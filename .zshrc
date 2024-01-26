@@ -73,4 +73,4 @@ function activate() {
 }
 
 # Configuration of dotfiles in $HOME 
-alias config='/usr/bin/git --git-dir=/Users/milangunasekera/.cfg/ --work-tree=/Users/milangunasekera'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
