@@ -41,6 +41,9 @@ nnoremap <leader>ez :e $HOME/.zshrc<cr>
 " Scratch buffer
 nnoremap <leader>es :ene <bar> :setlocal buftype=nofile bufhidden=hide noswapfile<cr>
 
+" Journal file
+nnoremap <leader> ee :e $JOURNALFILE<cr>
+
 " remappings to open different lists (registers, undolist, buffers, taglist, jumplist, arglist)
 " Consider doing remapping related to what I'm working on. Like starting with
 " r because of register, rather than l as list. I can re-work this into my
@@ -104,12 +107,12 @@ endif
 " filetype-specific changes (later, add this to a filetype python plugin)
 " file-specific changes should only set local options
 augroup filetypes
-	autocmd FileType python setlocal expandtab softtabstop=4 tabstop=4 shiftwidth=4
+	autocmd FileType python setlocal expandtab softtabstop=4 tabstop=8 shiftwidth=4
 	" Set marking spelling errors for Markdown files, by default. Usually, I'm journaling in Markdown format, and this would really help me out
 	" Also textwidth is something I can enforce, that makes my life
 	" actually a lot better.
 	" Man pages
-	autocmd FileType markdown setlocal autoindent expandtab
+	autocmd FileType markdown setlocal autoindent expandtab softtabstop=2 tabstop=8 shiftwidth=2
 	autocmd FileType man setlocal tabstop=8 nomodified nolist nonumber nomodifiable
 augroup END
 
