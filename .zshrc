@@ -61,7 +61,7 @@ function entry(){
 alias info='info --vi-keys'
 
 # Designed .local/bin is where the poetry repository is
-export PATH="/Users/milangunasekera/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # Make sure that INPUTRC is being read
 export INPUTRC=$HOME/.inputrc
