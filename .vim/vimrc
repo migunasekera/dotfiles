@@ -77,6 +77,11 @@ nnoremap <leader>hr :help reference_toc<cr>
 " Close help page
 nnoremap <leader>hc :helpc<cr>
 
+" Joining lines
+nnoremap <leader>jip :'{,'}join<cr>
+nnoremap <leader>jjip :'{,'}join!<cr>
+
+
 " Switch - and _. localleader becomes easier
 nnoremap _ -
 nnoremap - <Nop>
