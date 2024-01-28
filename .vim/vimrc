@@ -1,0 +1,133 @@
+" Consider whether to put the plugin on too
+" filetype indent on
+filetype plugin indent on
+syntax on
+
+" Normal mode Global options
+set incsearch
+set hlsearch
+" Shows normal command on the bottom right
+set showcmd 
+set foldmethod=marker
+set backspace=indent,start
+" Option changes
+" ZSH-like. Picks the longest substring & lists all options on first
+" 'wildchar' (<Tab> in my case). Second press starts wildmenu & runs through
+" selections
+set wildmenu
+set wildmode=list:longest,full
+set history=200
+
+" Command-line remappings and option changes
+" Remappings
+" Remap arrow keys, which look through results of already typed words in command line to be more Vim-like
+cnoremap <C-J> <Down>
+cnoremap <C-K> <Up>
+
+
+" Setting the leader keys
+" In a global plugin <Leader> should be used and in a filetype plugin
+" <LocalLeader>.  
+" Map space to be the leader key in normal mode
+" Remove mapping for Space Key first, before remapping the leader key
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>"
+" remappings with Leader key
+nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+" open zshrc
+nnoremap <leader>ez :e $HOME/.zshrc<cr>
+
+" Scratch buffer
+nnoremap <leader>es :ene <bar> :setlocal buftype=nofile bufhidden=hide noswapfile<cr>
+
+" remappings to open different lists (registers, undolist, buffers, taglist, jumplist, arglist)
+" Consider doing remapping related to what I'm working on. Like starting with
+" r because of register, rather than l as list. I can re-work this into my
+" muscle memory as needed
+nnoremap <leader>lb :buffers<cr>
+nnoremap <leader>lr :registers<cr>
+nnoremap <leader>lu :undolist<cr>
+nnoremap <leader>lt :tags<cr>
+nnoremap <leader>lj :jumps<cr>
+nnoremap <leader>la :args<cr>
+nnoremap <leader>lm :marks<cr>
+nnoremap <leader>ld :digraphs<cr>
+nnoremap <leader>lc :changes<cr>
+nnoremap <leader>lo :oldfiles<cr>
+" ^I is the escape character for tabs. I want to keep everything two
+" characters
+nnoremap <leader>li :tabs<cr>
+
+" Toggle options I deal with a lot
+nnoremap <leader>th :set hlsearch!<cr>
+nnoremap <leader>tn :set number!<cr>
+nnoremap <leader>tr :set relativenumber!<cr>
+nnoremap <leader>ts :set spell!<cr>
+nnoremap <leader>tl :set list!<cr>
+nnoremap <leader>tw :set wrap!<cr>
+
+" Help functions
+nnoremap <leader>hi :help index<cr>
+" All normal mode, Ex commands, etc.
+" All functions from Vim API
+nnoremap <leader>hf :help function-list<cr>
+" Reference material for vim
+nnoremap <leader>hr :help reference_toc<cr>
+" Close help page
+nnoremap <leader>hc :helpc<cr>
+
+" Switch - and _. localleader becomes easier
+nnoremap _ -
+nnoremap - <Nop>
+let maplocalleader="-"
+" Example program using the localleader
+" nnoremap <localleader>c 0i"<Esc>
+
+nnoremap Y y$
+" Copy register
+nnoremap <leader>y "*y
+nnoremap <leader>d "_d
+
+" Undofile
+if has("persistent_undo")
+	set undodir=$HOME/.undodir
+	set undofile
+endif
+
+
+" filetype-specific changes (later, add this to a filetype python plugin)
+" file-specific changes should only set local options
+augroup filetypes
+	autocmd FileType python setlocal expandtab softtabstop=4 tabstop=4 shiftwidth=4
+	" Set marking spelling errors for Markdown files, by default. Usually, I'm journaling in Markdown format, and this would really help me out
+	" Also textwidth is something I can enforce, that makes my life
+	" actually a lot better.
+	" Man pages
+	autocmd FileType markdown setlocal autoindent expandtab
+	autocmd FileType man setlocal tabstop=8 nomodified nolist nonumber nomodifiable
+augroup END
+
+" Related to vim-highlightedyank plugin.
+" Configures the amount of time that text is highlighted during a yank.
+let g:highlightedyank_highlight_duration = 250
+
+" Remapping to move text up and down.
+" Normal remappings 
+"nnoremap <C-K> mz:m-2<cr>`z:delmarks z<cr>
+"nnoremap <C-J> mz:m+1<cr>`z:delmarks z<cr>
+
+" Visual remapping (I can treat this very similar to the normal command above with V, but
+" it's a little less troublesome to deal with.
+vnoremap <C-K> :m'<-2<cr>gv
+vnoremap <C-J> :m'>+1<cr>gv
+
+" Plugins will be downloaded under the specified directory.
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-surround'
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
