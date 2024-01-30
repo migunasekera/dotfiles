@@ -12,5 +12,6 @@ Dotfiles to be stored and shared across multiple machines. Approach used is a gi
 ```bash
 git clone --bare <git-repo-url> $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+config config --local status.showUntrackedFiles no
 config checkout
 ```
