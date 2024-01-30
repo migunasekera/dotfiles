@@ -84,6 +84,10 @@ nnoremap <leader>hc :helpc<cr>
 nnoremap <leader>jip :'{,'}join<cr>
 nnoremap <leader>jjip :'{,'}join!<cr>
 
+" Adding space in normal mode
+nnoremap <leader>o mzo<Esc>`z:delmarks z<cr>
+nnoremap <leader>O mzO<Esc>`z:delmarks z<cr>
+
 
 " Switch - and _. localleader becomes easier
 nnoremap _ -
