@@ -10,8 +10,10 @@ Dotfiles to be stored and shared across multiple machines. Approach used is a gi
 
 ## Setup on a new machine
 ```bash
-git clone --bare <git-repo-url> $HOME/.cfg
+git clone --bare https://github.com/migunasekera/dotfiles.git $HOME/.cfg
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 config config --local status.showUntrackedFiles no
 config checkout
+mkdir -p .config/kitty
+ln -s .kitty.conf .config/kitty/kitty.conf
 ```
