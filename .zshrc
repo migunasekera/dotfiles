@@ -54,8 +54,6 @@ function entry(){
 	vim + $JOURNALFILE 
 }
 
-# FZF keybindings
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ## Info keybinds for vi-mode
 alias info='info --vi-keys'
@@ -74,3 +72,6 @@ function activate() {
 
 # Configuration of dotfiles in $HOME 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
